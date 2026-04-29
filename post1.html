@@ -4,39 +4,137 @@
   <title>Why Hybrid Cloud Networking Fails</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: Arial;
-      background-color: #0f172a;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1a1f35 100%);
       color: #e2e8f0;
-      line-height: 1.6;
+      line-height: 1.75;
+      min-height: 100vh;
     }
 
     .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 24px;
     }
 
     h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
       color: #38bdf8;
+      margin-bottom: 16px;
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+    }
+
+    .intro {
+      font-size: 1.1rem;
+      color: #cbd5e1;
+      margin-bottom: 40px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid #334155;
     }
 
     h2 {
-      margin-top: 30px;
+      font-size: 1.5rem;
+      font-weight: 600;
       color: #7dd3fc;
+      margin-top: 50px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    h2::before {
+      content: '';
+      width: 4px;
+      height: 28px;
+      background: #38bdf8;
+      border-radius: 2px;
+    }
+
+    p {
+      margin-bottom: 16px;
+      color: #cbd5e1;
+    }
+
+    ul {
+      list-style: none;
+      margin: 24px 0 24px 0;
+    }
+
+    li {
+      padding: 8px 0 8px 28px;
+      position: relative;
+      color: #cbd5e1;
+    }
+
+    li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: #38bdf8;
+      font-weight: bold;
+    }
+
+    .box {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      padding: 24px;
+      border-left: 4px solid #38bdf8;
+      margin: 32px 0;
+      border-radius: 6px;
+      font-style: italic;
+      color: #cbd5e1;
+    }
+
+    .box b {
+      color: #7dd3fc;
+      font-style: normal;
     }
 
     a {
       color: #38bdf8;
       text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
     }
 
-    .box {
-      background: #1e293b;
-      padding: 15px;
+    a:hover {
+      color: #7dd3fc;
+    }
+
+    img {
+      width: 100%;
+      margin: 40px 0;
       border-radius: 8px;
-      margin: 20px 0;
+      display: block;
+    }
+
+    .back-link {
+      margin-top: 60px;
+      padding-top: 30px;
+      border-top: 1px solid #334155;
+    }
+
+    @media (max-width: 640px) {
+      h1 {
+        font-size: 1.75rem;
+      }
+
+      h2 {
+        font-size: 1.25rem;
+      }
+
+      .container {
+        padding: 40px 16px;
+      }
     }
   </style>
 </head>
@@ -47,7 +145,7 @@
 
 <h1>Why Hybrid Cloud Networking Fails in Real Environments</h1>
 
-<p><b>Hybrid cloud is not failing because of compute or storage.</b><br>
+<p class="intro"><b>Hybrid cloud is not failing because of compute or storage.</b><br>
 It fails because of networking design decisions made too early — and never revisited.</p>
 
 <div class="box">
@@ -57,10 +155,9 @@ It fails because of networking design decisions made too early — and never rev
 <h2>Reference Architecture</h2>
 <p>This represents a typical hybrid network design pattern used in enterprise environments.</p>
 <img src="images/hybrid-diagram-white.png" 
-     alt="Hybrid Network Architecture"
-     style="width:100%; margin:30px 0; border-radius:10px;">
+     alt="Hybrid Network Architecture">
   
-<h2>1. Over-reliance on Default Routing</h2>
+<h2>Over-reliance on Default Routing</h2>
 
 <p>One of the most common mistakes is pushing everything through a single path using <b>0.0.0.0/0</b>.</p>
 
@@ -77,7 +174,7 @@ It fails because of networking design decisions made too early — and never rev
 <b>Insight:</b> Default routes simplify design—but amplify risk.
 </div>
 
-<h2>2. Hub-Spoke Without Traffic Understanding</h2>
+<h2>Hub-Spoke Without Traffic Understanding</h2>
 
 <p>Hub-spoke is widely used, but rarely understood deeply.</p>
 
@@ -94,7 +191,7 @@ It fails because of networking design decisions made too early — and never rev
 <b>Better approach:</b> Design based on traffic patterns, not templates.
 </div>
 
-<h2>3. On-Prem and Cloud Are Treated as Equal</h2>
+<h2>On-Prem and Cloud Are Treated as Equal</h2>
 
 <p>This is a subtle but critical mistake.</p>
 
@@ -108,7 +205,7 @@ Cloud networks are dynamic and ephemeral.</p>
   <li>Debugging nightmares</li>
 </ul>
 
-<h2>4. Security Becomes the Bottleneck</h2>
+<h2>Security Becomes the Bottleneck</h2>
 
 <p>Everything routed via firewall sounds secure.</p>
 
@@ -127,7 +224,7 @@ Cloud networks are dynamic and ephemeral.</p>
 
 <p>Hybrid cloud is not about connecting two environments.</p>
 
-<p>It’s about designing a system where:</p>
+<p>It's about designing a system where:</p>
 <ul>
   <li>Traffic flows naturally</li>
   <li>Failures are isolated</li>
@@ -141,7 +238,7 @@ Cloud networks are dynamic and ephemeral.</p>
 It succeeds when networking is treated as architecture.</b>
 </div>
 
-<p><a href="index.html">← Back to Home</a></p>
+<p class="back-link"><a href="index.html">← Back to Home</a></p>
 
 </div>
 
