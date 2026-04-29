@@ -1,32 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Rohan Architect</title>
+  <title>Why Hybrid Cloud Networking Fails</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: Arial;
       background-color: #0f172a;
       color: #e2e8f0;
-    }
-
-    header {
-      padding: 40px 20px;
-      text-align: center;
-      background: linear-gradient(90deg, #0f172a, #1e293b);
-    }
-
-    h1 {
-      font-size: 40px;
-      color: #38bdf8;
-      margin-bottom: 10px;
-    }
-
-    p.subtitle {
-      font-size: 18px;
-      color: #94a3b8;
+      line-height: 1.6;
     }
 
     .container {
@@ -35,80 +19,126 @@
       padding: 20px;
     }
 
-    .section {
-      margin-top: 40px;
+    h1 {
+      color: #38bdf8;
     }
 
-    .card {
-      background: #1e293b;
-      padding: 20px;
-      margin-top: 15px;
-      border-radius: 10px;
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-3px);
-      background: #334155;
+    h2 {
+      margin-top: 30px;
+      color: #7dd3fc;
     }
 
     a {
-      text-decoration: none;
       color: #38bdf8;
-      font-weight: bold;
+      text-decoration: none;
     }
 
-    footer {
-      text-align: center;
-      padding: 30px;
-      margin-top: 40px;
-      color: #64748b;
+    .box {
+      background: #1e293b;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px 0;
     }
   </style>
 </head>
 
 <body>
 
-<header>
-  <h1>Rohan Architect</h1>
-  <p class="subtitle">Real-world infrastructure • Cloud • Networking • AI</p>
-</header>
-
 <div class="container">
 
-  <div class="section">
-    <h2>🚀 About</h2>
-    <p>
-      17+ years of experience in networking and cloud architecture.  
-      Focused on real-world infrastructure design, hybrid cloud, and scalable systems.
-    </p>
-  </div>
+<h1>Why Hybrid Cloud Networking Fails in Real Environments</h1>
 
-  <div class="section">
-    <h2>📚 Latest Insights</h2>
+<p><b>Hybrid cloud is not failing because of compute or storage.</b><br>
+It fails because of networking design decisions made too early — and never revisited.</p>
 
-    <div class="card">
-      <a href="#">Why Hybrid Cloud Networking Fails</a>
-      <p>Understanding the real bottlenecks in hybrid architecture.</p>
-    </div>
-
-    <div class="card">
-      <a href="#">AI Workloads Are Network-First</a>
-      <p>Why compute is not your biggest constraint anymore.</p>
-    </div>
-
-    <div class="card">
-      <a href="#">Nutanix vs Azure: Real Trade-offs</a>
-      <p>A practical comparison beyond marketing slides.</p>
-    </div>
-
-  </div>
-
+<div class="box">
+<b>Reality:</b> Most architectures look perfect on diagrams, but break under real traffic patterns.
 </div>
 
-<footer>
-  © 2026 Rohan Architect
-</footer>
+<h2>1. Over-reliance on Default Routing</h2>
+
+<p>One of the most common mistakes is pushing everything through a single path using <b>0.0.0.0/0</b>.</p>
+
+<p>It looks clean. It centralizes control.</p>
+
+<p>But in production:</p>
+<ul>
+  <li>Latency increases</li>
+  <li>Inspection becomes bottleneck</li>
+  <li>Failure domains expand</li>
+</ul>
+
+<div class="box">
+<b>Insight:</b> Default routes simplify design—but amplify risk.
+</div>
+
+<h2>2. Hub-Spoke Without Traffic Understanding</h2>
+
+<p>Hub-spoke is widely used, but rarely understood deeply.</p>
+
+<p>Teams assume all traffic should pass through the hub.</p>
+
+<p>In reality:</p>
+<ul>
+  <li>East-West traffic explodes</li>
+  <li>Hairpinning creates inefficiencies</li>
+  <li>Costs increase without visibility</li>
+</ul>
+
+<div class="box">
+<b>Better approach:</b> Design based on traffic patterns, not templates.
+</div>
+
+<h2>3. On-Prem and Cloud Are Treated as Equal</h2>
+
+<p>This is a subtle but critical mistake.</p>
+
+<p>On-prem networks are stable and predictable.<br>
+Cloud networks are dynamic and ephemeral.</p>
+
+<p>Trying to apply the same rules leads to:</p>
+<ul>
+  <li>Routing complexity</li>
+  <li>Asymmetric traffic</li>
+  <li>Debugging nightmares</li>
+</ul>
+
+<h2>4. Security Becomes the Bottleneck</h2>
+
+<p>Everything routed via firewall sounds secure.</p>
+
+<p>But:</p>
+<ul>
+  <li>Throughput limits hit early</li>
+  <li>Scaling becomes expensive</li>
+  <li>Design becomes rigid</li>
+</ul>
+
+<div class="box">
+<b>Key thought:</b> Security should be distributed, not centralized blindly.
+</div>
+
+<h2>What Most Engineers Miss</h2>
+
+<p>Hybrid cloud is not about connecting two environments.</p>
+
+<p>It’s about designing a system where:</p>
+<ul>
+  <li>Traffic flows naturally</li>
+  <li>Failures are isolated</li>
+  <li>Scalability is built-in</li>
+</ul>
+
+<h2>Final Takeaway</h2>
+
+<div class="box">
+<b>Hybrid cloud fails when networking is treated as configuration.<br>
+It succeeds when networking is treated as architecture.</b>
+</div>
+
+<p><a href="index.html">← Back to Home</a></p>
+
+</div>
 
 </body>
 </html>
