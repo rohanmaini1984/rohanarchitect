@@ -22,22 +22,26 @@ The solution addresses this by introducing an automated workflow that:
 ## Architecture
 
 ```mermaid
+
 flowchart LR
     A["VMware vROps<br/>Detects high CPU threshold breaches"]
     B["Outlook<br/>Receives vROps alert emails"]
     C["Power Automate<br/>Filters emails and extracts alert fields"]
     D{"Does the Alert ID<br/>already exist?"}
     E["SharePoint<br/>Create a new alert record"]
-    F["SharePoint<br/>Update the existing record"]
+    F["SharePoint<br/>Update existing record<br/>Severity and state"]
     G["Power BI<br/>KPIs, trends, recurrence views and filters"]
     H["Operations Team<br/>Investigation and prioritisation"]
 
-    A --> B --> C --> D
+    A --> B
+    B --> C
+    C --> D
     D -->|No| E
     D -->|Yes| F
     E --> G
     F --> G
     G --> H
+
 ```
 
 ## Component responsibilities
