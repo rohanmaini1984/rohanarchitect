@@ -22,7 +22,7 @@ The solution addresses this by introducing an automated workflow that:
 ## Architecture
 
 ```mermaid
-flowchart TD
+flowchart LR
     A["VMware vROps<br/>Detects high CPU threshold breaches"]
     B["Outlook<br/>Receives vROps alert emails"]
     C["Power Automate<br/>Filters emails and extracts alert fields"]
