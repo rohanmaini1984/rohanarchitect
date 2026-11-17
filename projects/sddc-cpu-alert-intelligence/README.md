@@ -44,6 +44,46 @@ flowchart LR
 
 ```
 
+## Alert Data Model
+
+Power Automate extracts eight key attributes from incoming VMware vROps alert emails and stores them as structured fields in SharePoint.
+
+| Field | Description | Purpose |
+|---|---|---|
+| SDDC | Software-Defined Data Center identifier | Identifies the originating SDDC |
+| Tenant | Tenant identifier or name | Identifies the affected tenant |
+| VM | Virtual machine name | Identifies the affected virtual machine |
+| CPU | CPU utilisation value included in the alert | Captures the reported CPU condition |
+| Alert ID | Unique identifier provided with the alert | Matches incoming notifications to existing records |
+| Severity | Alert severity level | Tracks changes in alert severity |
+| State | Current alert state | Tracks changes such as Active or Cleared |
+| Timestamp | Alert timestamp | Records the time associated with the notification |
+
+### Alert ID-Based Record Matching
+
+Alert ID is the key used by Power Automate to determine whether an incoming notification represents a new alert or an update to an existing alert.
+
+**Scenario 1 — New alert**
+
+- Power Automate checks the incoming Alert ID against existing SharePoint records.
+- If no matching record exists, a new SharePoint record is created.
+- The extracted alert attributes are stored in the new record.
+
+**Scenario 2 — Existing alert update**
+
+- If the incoming Alert ID matches an existing SharePoint record, the existing record is updated.
+- Severity is updated when the alert severity changes.
+- State is updated when the alert state changes, including transitions such as Active to Cleared.
+- The same SharePoint record is retained rather than creating another record.
+
+### Record Management Principle
+
+The SharePoint list maintains the latest known information for each matching Alert ID.
+
+This approach supports current-state alert tracking and avoids creating separate records for updates to an existing alert.
+
+The current design updates the existing record; it should not be interpreted as a complete historical audit trail of every severity or state transition.
+
 ## Component responsibilities
 
 ### 1. VMware vROps — Monitoring and alert generation
